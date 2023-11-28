@@ -1,11 +1,9 @@
-/* globals describe test expect */
-
 const Ship = require('../src/ship');
 
 let ship;
 
 describe('Ship Constructor', () => {
-  beforeAll(() => {
+  beforeEach(() => {
     ship = new Ship('Dover');
   });
 
@@ -16,5 +14,11 @@ describe('Ship Constructor', () => {
   test('has a starting port', () => {
     expect(ship).toHaveProperty('currentPort');
     expect(ship.currentPort).toBe('Dover');
+  });
+
+  test('can set sail', () => {
+    ship.setSail();
+
+    expect(ship.currentPort).toBeFalsy();
   });
 });
