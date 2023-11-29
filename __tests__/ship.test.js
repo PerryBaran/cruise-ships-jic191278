@@ -5,7 +5,7 @@ const Itinerary = require('../src/itinerary');
 let ship;
 let dover;
 let calais;
-let intinerary;
+let itinerary;
 
 describe('Ship Constructor', () => {
   beforeEach(() => {
@@ -21,7 +21,7 @@ describe('Ship Constructor', () => {
 
   test('has a starting port', () => {
     expect(ship).toHaveProperty('currentPort');
-    expect(ship.currentPort.name).toBe('Dover');
+    expect(ship.currentPort).toBe(dover);
   });
 
   test('has a previous port', () => {
@@ -35,7 +35,17 @@ describe('Ship Constructor', () => {
     expect(ship.previousPort).toBe(dover);
   });
 
+  test('cannot sail past end of itinerary', () => {
+    ship.setSail();
+    ship.dock();
+
+    expect(() => {
+      ship.setSail();
+    }).toThrowError('End of itinerary reached');
+  });
+
   test('can dock at a different port', () => {
+    ship.setSail();
     ship.dock();
 
     expect(ship.currentPort).toBe(calais);
