@@ -1,15 +1,17 @@
 const Port = require('../src/port');
 
-let port;
-let ship1;
-let ship2;
-
 describe('PORT', () => {
-  describe('Constructor', () => {
-    beforeEach(() => {
-      port = new Port('Dover');
-    });
+  let port;
+  let ship1;
+  let ship2;
 
+  beforeEach(() => {
+    port = new Port('Dover');
+    ship1 = 'Ship One';
+    ship2 = 'Ship Two';
+  });
+
+  describe('Constructor', () => {
     test('can be instantiated', () => {
       expect(port).toBeInstanceOf(Object);
     });
@@ -24,12 +26,6 @@ describe('PORT', () => {
   });
 
   describe('Methods', () => {
-    beforeEach(() => {
-      port = new Port('Dover');
-      ship1 = 'Ship One';
-      ship2 = 'Ship Two';
-    });
-
     test('can add ship', () => {
       port.addShip(ship1);
 

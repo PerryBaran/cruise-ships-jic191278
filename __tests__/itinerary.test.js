@@ -1,15 +1,15 @@
 const Itinerary = require('../src/itinerary');
 
-let itinerary;
-let ports;
-
 describe('PORT', () => {
-  describe('Constructor', () => {
-    beforeEach(() => {
-      ports = ['Dover', 'Calais'];
-      itinerary = new Itinerary(ports);
-    });
+  let itinerary;
+  let ports;
 
+  beforeEach(() => {
+    ports = ['Dover', 'Calais'];
+    itinerary = new Itinerary(ports);
+  });
+
+  describe('Constructor', () => {
     test('can be instantiated', () => {
       expect(itinerary).toBeInstanceOf(Object);
     });

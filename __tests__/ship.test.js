@@ -1,20 +1,20 @@
 const Ship = require('../src/ship');
 const Port = require('../src/port');
 
-let port1;
-let port2;
-let itinerary;
-let ship;
-
 describe('SHIP', () => {
-  describe('Constructor', () => {
-    beforeEach(() => {
-      port1 = new Port('port1');
-      port2 = new Port('port2');
-      itinerary = { ports: [port1, port2] };
-      ship = new Ship(itinerary);
-    });
+  let port1;
+  let port2;
+  let itinerary;
+  let ship;
 
+  beforeEach(() => {
+    port1 = new Port('port1');
+    port2 = new Port('port2');
+    itinerary = { ports: [port1, port2] };
+    ship = new Ship(itinerary);
+  });
+
+  describe('Constructor', () => {
     test('can be instantiated', () => {
       expect(ship).toBeInstanceOf(Object);
     });
@@ -36,13 +36,6 @@ describe('SHIP', () => {
   });
 
   describe('Methods', () => {
-    beforeEach(() => {
-      port1 = new Port('port1');
-      port2 = new Port('port2');
-      itinerary = { ports: [port1, port2] };
-      ship = new Ship(itinerary);
-    });
-
     test('can set sail', () => {
       ship.setSail();
 
