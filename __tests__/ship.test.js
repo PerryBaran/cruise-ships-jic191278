@@ -1,5 +1,4 @@
 const Ship = require('../src/ship');
-const Port = require('../src/port');
 
 describe('SHIP', () => {
   let port1;
@@ -8,8 +7,18 @@ describe('SHIP', () => {
   let ship;
 
   beforeEach(() => {
-    port1 = new Port('port1');
-    port2 = new Port('port2');
+    port1 = {
+      name: 'port1',
+      ships: [],
+      addShip: jest.fn(),
+      removeShip: jest.fn(),
+    };
+    port2 = {
+      name: 'port2',
+      ships: [],
+      addShip: jest.fn(),
+      removeShip: jest.fn(),
+    };
     itinerary = { ports: [port1, port2] };
     ship = new Ship(itinerary);
   });
@@ -31,7 +40,7 @@ describe('SHIP', () => {
     });
 
     test('gets added to port on instantiation', () => {
-      expect(port1.ships).toContain(ship);
+      expect(port1.addShip).toHaveBeenCalledWith(ship);
     });
   });
 
@@ -43,6 +52,8 @@ describe('SHIP', () => {
       expect(ship.previousPort).toBe(port1);
 
       expect(port1.ships).not.toContain(ship);
+
+      expect(port1.removeShip).toHaveBeenCalledWith(ship);
     });
 
     test('cannot set sail if already sailing', () => {
@@ -60,7 +71,7 @@ describe('SHIP', () => {
       expect(ship.currentPort).toBe(port2);
       expect(ship.previousPort).toBe(port1);
 
-      expect(port2.ships).toContain(ship);
+      expect(port2.addShip).toHaveBeenCalledWith(ship);
     });
 
     test('cannot dock if already docked', () => {
