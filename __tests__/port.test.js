@@ -7,8 +7,8 @@ describe('PORT', () => {
 
   beforeEach(() => {
     port = new Port('Dover');
-    ship1 = 'Ship One';
-    ship2 = 'Ship Two';
+    ship1 = jest.fn();
+    ship2 = jest.fn();
   });
 
   describe('Constructor', () => {

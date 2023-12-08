@@ -1,11 +1,11 @@
 const Itinerary = require('../src/itinerary');
 
-describe('PORT', () => {
+describe('ITINERARY', () => {
   let itinerary;
   let ports;
 
   beforeEach(() => {
-    ports = ['Dover', 'Calais'];
+    ports = jest.fn();
     itinerary = new Itinerary(ports);
   });
 
@@ -16,7 +16,7 @@ describe('PORT', () => {
 
     test('has properties', () => {
       expect(itinerary).toHaveProperty('ports');
-      expect(itinerary.ports).toEqual(['Dover', 'Calais']);
+      expect(itinerary.ports).toBe(ports);
     });
   });
 });
